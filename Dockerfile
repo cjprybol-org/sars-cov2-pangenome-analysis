@@ -35,12 +35,11 @@ RUN julia -e 'import Pkg; Pkg.add(url="https://github.com/cjprybol/Mycelia.git",
 RUN julia -e 'import Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
 
 # https://snakemake.readthedocs.io/en/stable/getting_started/installation.html
-RUN conda install -c conda-forge mamba
-RUN mamba install -y -c conda-forge -c bioconda snakemake
-RUN mamba install -y -c conda-forge ncbi-datasets-cli
-RUN mamba install -y -c conda-forge parallel
-# RUN conda install -y -c conda-forge -c bioconda snakemake
-# RUN conda install -y -c conda-forge ncbi-datasets-cli
+# RUN conda install -c conda-forge mamba
+RUN conda install -y -c conda-forge -c bioconda \
+ snakemake \
+ ncbi-datasets-cli \
+ parallel
 RUN curl https://rclone.org/install.sh | bash
 
 # datasets download virus genome taxon SARS-CoV-2
