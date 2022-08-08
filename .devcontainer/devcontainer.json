@@ -1,5 +1,5 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/jupyter-datascience-notebooks
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.236.0/containers/jupyter-datascience-notebooks
 {
 	"name": "Jupyter Data Science Notebooks (Community)",
 	"build": {
@@ -9,13 +9,12 @@
 	// https://github.com/docker/for-linux/issues/321
 	// https://forum.rclone.org/t/fusermount-error-on-running-rclone-mount/8455
 	// https://stackoverflow.com/questions/48402218/fuse-inside-docker
-	"runArgs": [
-		"--device=/dev/fuse",
-		"--cap-add=SYS_ADMIN",
-		"--security-opt=apparmor:unconfined"
-		// "--privileged=true"
-	],
-	
+	// "runArgs": [
+	// 	"--device=/dev/fuse",
+	// 	"--cap-add=SYS_ADMIN",
+	// 	"--security-opt=apparmor:unconfined"
+	// 	// "--privileged=true"
+	// ],
 	// // Forward Jupyter port locally, mark required
 	// "forwardPorts": [8888],
 	// "portsAttributes": {
@@ -37,13 +36,17 @@
 			
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"ms-python.python"
+				"ms-python.python",
+				"julialang.language-julia"
+				// "vscodevim.vim"
 			]
 		}
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	// "postCreateCommand": "mkdir -p /home/jovyan/rclone-mounts/drive && rclone mount drive: /home/jovyan/rclone-mounts/drive &",
+	// "postCreateCommand": "snakemake unmount_and_unlink_google_drive --cores 1 && snakemake link_google_drive --cores 1",
+	"postCreateCommand": "echo 'hello'",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "jovyan"

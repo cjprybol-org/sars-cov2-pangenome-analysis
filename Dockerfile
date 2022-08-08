@@ -50,3 +50,5 @@ RUN mkdir -p /home/jovyan/.config/rclone/
 COPY rclone.conf /home/jovyan/.config/rclone/rclone.conf
 
 RUN echo "hello!"
+
+CMD jupyter lab
