@@ -22,7 +22,25 @@ RUN apt-get update \
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
+    # rclone mounting - not sure I want to keep doing this
     libfuse2 \
     fuse
 
+# RUN curl https://rclone.org/install.sh | sudo bash
+RUN curl https://rclone.org/install.sh | bash
+
+# set me to a specific tag when I'm ready to release this
+RUN julia -e 'import Pkg; Pkg.add(url="https://github.com/cjprybol/Mycelia.git", rev="master")'
+RUN julia -e 'import Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
+
+RUN conda install -y -c conda-forge -c bioconda \
+    snakemake \
+    ncbi-datasets-cli \
+    parallel
+
 USER jovyan
+
+ENV HOME=/home/jovyan
+
+RUN mkdir -p $HOME/.config/rclone/
+COPY rclone.conf $HOME/.config/rclone/rclone.conf
