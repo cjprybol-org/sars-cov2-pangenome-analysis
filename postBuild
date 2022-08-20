@@ -1,1 +1,12 @@
 #!/bin/bash
+
+curl https://rclone.org/install.sh | sudo bash
+
+# julia -e 'import Pkg; Pkg.add(url="https://github.com/cjprybol/Mycelia.git", rev="master")'
+
+# [[ ! -f "$HOME/.bash_profile" ]] && ln -s $HOME/workspace/dotfiles/.bash_profile $HOME
+# [[ ! -f "$HOME/.bashrc" ]] && ln -s $HOME/workspace/dotfiles/.bashrc $HOME
+# [[ ! -f "$HOME/.config" ]] && ln -s $HOME/workspace/dotfiles/.config $HOME
+# [[ ! -f "$HOME/.gitconfig" ]] && ln -s $HOME/workspace/dotfiles/.gitconfig $HOME
+# [[ ! -f "$HOME/.profile" ]] && ln -s $HOME/workspace/dotfiles/.profile $HOME
+# [[ ! -f "$HOME/.vimrc" ]] && ln -s $HOME/workspace/dotfiles/.vimrc $HOME
