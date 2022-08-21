@@ -42,6 +42,11 @@ rule document:
 # raw export from above was too large to work with and I can't download de-hydrated, so will subsample instead
 
 # snakemake --snakefile Snakefile.py --cores 1 download_covid_dataset_annotated_complete_refseq
+
+# don't need to run
+# datasets summary virus genome taxon sars-cov-2 --annotated --complete-only --refseq > dataset-summary.json
+# because the data_report.jsonl in the download zip is the same content
+
 rule download_covid_dataset_annotated_complete_refseq:
     output:
         "data/sars-cov-2.annotated.complete.refseq.zip"
