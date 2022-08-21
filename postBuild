@@ -3,22 +3,34 @@
 # curl https://rclone.org/install.sh | sudo bash
 
 # non-sudo rclone install
-wget https://downloads.rclone.org/rclone-current-linux-amd64.zip
-unzip rclone-current-linux-amd64.zip
-rm rclone-current-linux-amd64.zip
-# cd rclone-*-linux-amd64
-mkdir -p ~/.local/bin/
-cp rclone-*-linux-amd64/rclone ~/.local/bin/
-chmod +x ~/.local/bin/rclone
-mkdir -p ~/.local/share/man/man1
-cp rclone-*-linux-amd64/rclone.1 ~/.local/share/man/man1
-rm -r rclone-*-linux-amd64
+# mkdir -p ~/.local/bin/
+
+# [[ ! -f $HOME/.local/bin/rclone ]] && \
+# wget https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
+# unzip rclone-current-linux-amd64.zip && \
+# cp rclone-*-linux-amd64/rclone $HOME/.local/bin/ && \
+# chmod +x $HOME/.local/bin/rclone && \
+# mkdir -p $HOME/.local/share/man/man1 && \
+# cp rclone-*-linux-amd64/rclone.1 $HOME/.local/share/man/man1 && \
+# rm rclone-current-linux-amd64.zip
 
 # copy dotfiles to home directory
-[[ ! -f "$HOME/workspace/dotfiles/copy-to-home.sh" ]] && bash $HOME/workspace/dotfiles/copy-to-home.sh
+# [[ ! -f "$HOME/workspace/dotfiles/copy-to-home.sh" ]] && bash $HOME/workspace/dotfiles/copy-to-home.sh
 
 # julia -e 'import Pkg; Pkg.add(url="https://github.com/cjprybol/Mycelia.git", rev="master")'
-julia \
-    --project="$HOME/workspace/sars-cov2-pangenome-analysis" \
-    --startup-file=no \
-    'import Pkg; Pkg.instantiate()'
+# julia \
+#     --project="$HOME/workspace/sars-cov2-pangenome-analysis" \
+#     --startup-file=no \
+#     'import Pkg; Pkg.instantiate()'
+
+# sudo apt-get install wget gpg
+# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+# sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+# sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+# rm -f packages.microsoft.gpg
+
+# sudo apt install apt-transport-https
+# sudo apt update
+# sudo apt install code
+
+# mamba install -c conda-forge -c bioconda snakemake

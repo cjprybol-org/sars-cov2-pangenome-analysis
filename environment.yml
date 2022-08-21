@@ -4,3 +4,4 @@ channels:
   - bioconda
 dependencies:
   - ncbi-datasets-cli
+  - snakemake
