@@ -81,4 +81,22 @@ rule unzip_covid_dataset_annotated_complete:
         """
         unzip -d data/sars-cov-2.annotated.complete {input}
         """
+
+# rule download_ncbi_tax_dump:
+#     output:
+#     shell:
+
+
+rule build_genome_from_dataset:
+    input:
+        "dataset_directory:
+    shell:
+        """
+        # julia --project="./Project.toml" -e 'import Pkg; Pkg.instantiate()'
+        # julia --project="./Project.toml" -e 'import Mycelia; println(pathof(Mycelia))'
+        # papermill path_of_mycelia/build_pangenome.ipynb --data_directory={input}
+        """
+
+
+
     
