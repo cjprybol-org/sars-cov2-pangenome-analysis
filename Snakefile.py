@@ -8,6 +8,12 @@
 
 import os
 
+# conda activate sars-cov2-pangenome-analysis
+
+# to specificy conda env as part of the rule
+# conda:
+#     "environment.yaml"
+
 # https://snakemake.readthedocs.io/en/v6.0.3/executing/cli.html#visualization
 # snakemake document --cores 1
 rule document:
@@ -26,7 +32,7 @@ rule document:
 # very large
 rule download_ncbi_dataset_zip:
     output:
-        "data/sars-cov-2.full.zip"
+        "data/sars-cov-2.zip"
     shell:
         """
         datasets download virus genome taxon SARS-CoV-2 --filename {output}
@@ -73,6 +79,7 @@ rule unzip_covid_dataset_annotated_complete:
 # don't need to run
 # datasets summary virus genome taxon sars-cov-2 --annotated --complete-only --refseq > dataset-summary.json
 # because the data_report.jsonl in the download zip is the same content
+
 # snakemake --snakefile Snakefile.py --cores 1 download_covid_dataset_annotated_complete_refseq
 rule download_covid_dataset_annotated_complete_refseq:
     output:
