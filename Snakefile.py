@@ -220,4 +220,33 @@ rule rehydrate_taxon_2697049_genbank:
 
 # dataformat tsv virus-genome --inputfile data/sars-cov-2.annotated.complete.refseq/ncbi_dataset/data/data_report.jsonl
 
+# this doesn't work for biosample
 # dataformat tsv virus-genome --inputfile data/sars-cov-2.annotated.complete.refseq/ncbi_dataset/data/biosample.jsonl
+
+# dataformat tsv genome --inputfile human/ncbi_dataset/data/assembly_data_report.jsonl
+
+# download SRA runs
+# https://www.ncbi.nlm.nih.gov/sra/?term=txid2697049%5BOrganism:noexp%5D%20NOT%200[Mbases
+
+# snakemake --snakefile Snakefile.py --cores 1 rehydrate_taxon_2697049_genbank
+rule download_metadata_from_google_drive:
+    output:
+        "metadata/sequences.csv.gz"
+    resources:
+        tmpdir="data/"
+    shell:
+        """
+        rclone copy google_drive:Projects/sars-cov2-pangenome-analysis/metadata ./metadata
+        """
+        
+rule unzip_sequences_table:
+    shell:
+        """
+        gzip -d ./metadata/sequences.csv.gz
+        """
+        
+# TODO:
+# downloading over API using the accessions in the above sequences table is working
+# join the sequences table with the kmers
+# genome metadata = node
+# 
